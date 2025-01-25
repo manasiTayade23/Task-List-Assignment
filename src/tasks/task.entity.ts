@@ -7,9 +7,10 @@ import {
 } from 'typeorm';
 
 export enum TaskStatus {
+  NOT_STARTED = 'NOT_STARTED',
   OPEN = 'OPEN',
   IN_PROGRESS = 'IN_PROGRESS',
-  DONE = 'DONE',
+  DONE = 'Finished',
 }
 
 @Entity()

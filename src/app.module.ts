@@ -5,16 +5,18 @@ import { AuthModule } from './auth/auth.module';
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/task.entity';
 import { User } from './users/users.entity';
+import 'dotenv/config';
+
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.DATABASE_HOST,
       port: 5432,
-      username: 'postgres',
-      password: 'new_password',
-      database: 'taskmanager',
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [User , Task],
       synchronize: true,
     }),
@@ -23,4 +25,13 @@ import { User } from './users/users.entity';
     TasksModule,
   ],
 })
-export class AppModule {}
+
+export class AppModule {
+  constructor() {
+    console.log('Database Configuration:');
+    console.log('Host:', process.env.DATABASE_HOST);
+    console.log('Port:', process.env.DATABASE_PORT || '5432');
+    console.log('Username:', process.env.DATABASE_USERNAME);
+    console.log('Database:', process.env.DATABASE_NAME);
+  }
+}

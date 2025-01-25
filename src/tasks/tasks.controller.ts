@@ -1,5 +1,15 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards, Req } from '@nestjs/common';
-import { TasksService } from './tasks.service'; // Ensure this path is correct
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
+import { TasksService } from './tasks.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Task } from './task.entity';
 
@@ -10,15 +20,16 @@ export class TasksController {
 
   @Post('/createTask')
   @UseGuards(JwtAuthGuard)
-  async create(@Req()req:any, @Body() task: Task) {
+  async create(@Req() req: any, @Body() task: Task) {
+    console.log('inside ');
+
     const userId = req.user.id;
-    return await this.tasksService.create(task,userId);
+    return await this.tasksService.create(task, userId);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
   async findAll(@Req() req) {
-    
     return await this.tasksService.findAll(req.userId);
   }
 

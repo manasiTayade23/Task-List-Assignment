@@ -2,13 +2,13 @@
 /dist
 /node_modules
 /build
-frontend/node_modules/
-task-manager-backend/node_modules/
+/node_modules/
+/node_modules/
 
 
-frontend/package.json
-frontend/package-lock.jsontask-manager-backend/package.json
-task-manager-backend/package-lock.json
+/package.json
+/package-lock.json
+
 
 # Logs
 logs
@@ -63,3 +63,6 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 /docker-compose.yml
+
+/tsconfig.json
+/tsconfig.build.json

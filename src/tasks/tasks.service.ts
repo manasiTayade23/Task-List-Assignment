@@ -12,9 +12,10 @@ export class TasksService {
 
   async create(task: Task,userId): Promise<Task> {
     task.userId = userId;
-    const createUser =  await this.tasksRepository.save(task);
+    const createTask =  await this.tasksRepository.save(task);
+    console.log("CREATE TASK->>",createTask);
     
-    return createUser;
+    return createTask;
   }
 
   async findAll(userId: number): Promise<Task[]> {
