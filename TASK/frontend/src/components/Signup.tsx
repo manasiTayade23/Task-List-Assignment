@@ -10,8 +10,16 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      // Simulate successful sign-up (replace with real logic)
-      navigate("/tasks");
+      try {
+        // Replace this with your API call to create a user
+        // Example:
+        // await signUpAPI({ email, password });
+
+        // Navigate to the task creation page on successful sign-up
+        navigate("/createTask");
+      } catch (error) {
+        alert("An error occurred during sign-up. Please try again.");
+      }
     } else {
       alert("Passwords do not match. Please try again.");
     }
@@ -58,9 +66,6 @@ const SignUp: React.FC = () => {
       outline: "none",
       transition: "border 0.3s ease",
     },
-    inputFocus: {
-      borderColor: "#4f46e5",
-    },
     button: {
       width: "100%",
       padding: "1rem",
@@ -74,8 +79,11 @@ const SignUp: React.FC = () => {
       fontWeight: "600",
       transition: "background-color 0.3s ease",
     },
-    buttonHover: {
-      backgroundColor: "#3b38d1",
+    terms: {
+      marginTop: "1.5rem",
+      fontSize: "0.9rem",
+      color: "#777",
+      textAlign: "center",
     },
     link: {
       marginTop: "1rem",
@@ -86,28 +94,11 @@ const SignUp: React.FC = () => {
       fontWeight: "600",
       textAlign: "center",
     },
-    terms: {
-      marginTop: "1.5rem",
-      fontSize: "0.9rem",
-      color: "#777",
-      textAlign: "center",
-    },
-    animation: {
-      animation: "fadeIn 1s ease-in-out",
-    },
-  };
-
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.style.borderColor = "#4f46e5";
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.style.borderColor = "#ddd";
   };
 
   return (
     <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={{ ...styles.form, ...styles.animation }}>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <h2 style={styles.header}>Create Your Account</h2>
         <input
           type="email"
@@ -115,8 +106,6 @@ const SignUp: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
           style={styles.input}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           required
         />
         <input
@@ -125,8 +114,6 @@ const SignUp: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Create a password"
           style={styles.input}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           required
         />
         <input
@@ -135,19 +122,11 @@ const SignUp: React.FC = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm your password"
           style={styles.input}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
           required
         />
-        <button
-          type="submit"
-          style={styles.button}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3b38d1")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#4f46e5")}
-        >
+        <button type="submit" style={styles.button}>
           Sign Up
         </button>
-
         <div style={styles.terms}>
           By signing up, you agree to our{" "}
           <a href="/terms" style={{ color: "#4f46e5" }}>
@@ -158,11 +137,7 @@ const SignUp: React.FC = () => {
             Privacy Policy
           </a>.
         </div>
-
-        <div
-          style={styles.link}
-          onClick={() => navigate("/login")}
-        >
+        <div style={styles.link} onClick={() => navigate("/login")}>
           Already have an account? Log in here
         </div>
       </form>

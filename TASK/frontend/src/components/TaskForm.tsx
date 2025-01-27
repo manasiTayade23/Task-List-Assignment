@@ -51,8 +51,10 @@ const TaskForm: React.FC = () => {
           onChange={(e) => setStatus(e.target.value)}
           style={styles.select}
         >
-          <option value="OPEN">Open</option>
-          <option value="DONE">Done</option>
+          <option value="Open">Open</option>
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Finished">Finished</option>
         </select>
         <button type="submit" style={styles.submitButton}>Create Task</button>
       </form>
